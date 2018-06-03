@@ -33,7 +33,7 @@ def bubbleize_2(text):
 def randomize(text):
     chars = []
     for idx, char in enumerate(text):
-        if random.randint(0, 1):
+        if randint(0, 1):
             chars.append(char.upper())
         else:
             chars.append(char.lower())
