@@ -2,7 +2,15 @@
 #randomize(text) - zwraca łańcuch znaków powstały z text przez losowowe poustawianie wielkości liter w text
 #numberize(text) - zwraca łańcuch powstały z text poprzez zmianę wszystkich wystąpień litery e na 3, litery 'o' na 0,  litery 'i' na '!'  oraz litery 'a' na @
 """Module for funny string manipulations"""
+from random import randint
+
 def bubbleize(text):
+    """Returns bubbleized strings
+       Args:
+           text: text to bubbleize
+       Returns:
+           bubbleized text
+       """
     nowy = ''
     text = text.lower()
     for idx, char in enumerate(text):
@@ -20,3 +28,21 @@ def bubbleize_2(text):
         else:
             chars.append(char.lower())
     return ''.join(chars)
+
+
+def randomize(text):
+    chars = []
+    for idx, char in enumerate(text):
+        if radnom.randint(0, 1):
+            chars.append(char.upper())
+        else:
+            chars.append(char.lower())
+    return ''.join(chars)
+
+def numberize(text):
+    chars = []
+    for char in text:
+        if char == 'e':
+
+        else:
+            chars.append(char)
