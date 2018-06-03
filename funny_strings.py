@@ -30,19 +30,3 @@ def bubbleize_2(text):
     return ''.join(chars)
 
 
-def randomize(text):
-    chars = []
-    for idx, char in enumerate(text):
-        if radnom.randint(0, 1):
-            chars.append(char.upper())
-        else:
-            chars.append(char.lower())
-    return ''.join(chars)
-
-def numberize(text):
-    chars = []
-    for char in text:
-        if char == 'e':
-
-        else:
-            chars.append(char)
