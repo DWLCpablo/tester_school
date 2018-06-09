@@ -30,6 +30,9 @@ class Stock:
                 items[product] = count
         return items
                 # return self.products TWOJE
+    @staticmethod
+    def foo(a): # podająć staticmethod możemyh uruchamiać funkcję na instantcjach klasy, jak i samej klasie
+        print('Static method called!', a)
 
 
 products = {'chair': 2, 'table': 3, 'lamp': 3}
@@ -37,4 +40,8 @@ stock = Stock({'chair': 2, 'table': 3, 'lamp': 3})
 print(stock.products)
 print(stock.resupply('bed', 5))
 print(stock.available_items())
-print(stock.withdraw('lamp', 8))
+print(stock.withdraw('lamp', 1))
+#Stock.foo('a')
+stock.foo('a')
+print(Stock.foo)
+print(stock.foo)
