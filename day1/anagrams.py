@@ -1,14 +1,18 @@
 # program który porównuje czy dwa słowa są anagramami - czy zawierają takie same znaki
 
 # boss
+def anagrams(first, second):
+    dic1 = {}
+    dic2 = {}
+    for char in first.lower():
+        dic1[char] = dic1.get(char, 0) + 1
+    for char in second.lower():
+        dic2[char] = dic2.get(char, 0) + 1
+    if dic1 == dic2:
+        return first, 'and', second, 'are anagrams.'
+    else:
+        return first, 'and', second, 'are not anagrams.'
 
-def are_anagrams(first, second):
-    hist1 = {}
-    hist2 = {}
-    for char in first:
-        hist1[char] = hist1.get(char ,0) + 1
-    for char in second:
-        hist2[char] = hist2.get(char, 0) + 1
-    return hist1 == hist2
 
-print(are_anagrams('first', 'second'))
+
+print(anagrams('older and wiser', 'I learned words'))

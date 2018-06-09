@@ -2,6 +2,7 @@
 #boss
 numbers = '123,21,27,3'
 def split(text, sep):
+
     parts = []
     current_part = ''
     for char in text:
@@ -65,3 +66,30 @@ def split4(text, sep):
     return parts
 
 print(split4(numbers, ','))
+
+
+def split(text, sep):
+    try:
+        return sep.join(text.split(sep))
+    except AttributeError as err:
+        print('Separator nie może być liczbą.')
+        print('Błąd: ', err)
+print(split(numbers, 9))
+
+
+def split2(text, sep):
+    try:
+        bufor = ''
+        good = []
+        for i in text:
+            if i != sep:
+                bufor += i
+            else:
+                good.append(bufor)
+                bufor = ''
+        good.append(bufor)
+        return 'The items are: ' + sep.join(good)
+    except AttributeError as err:
+        print('Separator nie może być liczbą.')
+        print('Błąd: ', err)
+print(split2(numbers, 1))

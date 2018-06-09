@@ -1,5 +1,5 @@
 
-n = 68
+n = 81
 i = 0
 square = False
 done = False

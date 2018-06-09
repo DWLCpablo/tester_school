@@ -1,12 +1,11 @@
 
+x = 3
+y = 2
+z = 1
 
-x = 10
-y = 12
-z = 10
-
-if (x <= y) and (y <= z) or z <= y <= x:
-    print ('Mediana to y')
-elif y<= x <= z or z <= x <= y:
-    print ('Mediana to x')
+if x <= y <= z or z <= y <= x:
+    print('Mediana to y i wynosi:', y)
+elif z <= x <= y or y <= x <= z:
+    print('Mediana to x i wynosi', x)
 else:
-    print ('Mediana to z')
+    print('Mediana to z i wynosi', z)

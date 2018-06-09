@@ -8,6 +8,16 @@ def is_palindrome(word):
 
 print(is_palindrome('word'))
 
+def palindrome(word):
+    rev = word[::-1]
+    if rev.lower() == word.lower():
+        return word, 'jest palindromem.'
+    else:
+        return word, 'nie jest palindromem.'
+print(palindrome('Bolton'))
+print(palindrome('Zaradnydyndaraz'))
+
+
 #boss
 def is_palindrome(text):
     """Checks if text is a palindrome
@@ -24,4 +34,4 @@ def is_palindrome(text):
             return False
         return True
 
-print(is_palindrome('Oko'))
+print(is_palindrome('Okokoko'))

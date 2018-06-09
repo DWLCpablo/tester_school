@@ -1,18 +1,15 @@
 #napisać program który dla danego słowa skonstruuje słownik zawierający częstości występowania poszczególnych liter. JJeżeli w podanym słowie znajdą się znaki inne niż litery to pogram powinien je zliczyć i umieścić pod jedną pozycją 'others' Program powinien ignorować wielkość znaków.
-
-
-# boss
-text = 'Ala ma kota'
-hist = {'a': 4, 'm': 1, 'k': 1, 'l': 1, 'o': 1, 't': 1, 'others': 3}
-
+# poprawiłeś bossa, chyba źle przepisałeś, teraz działa
 def histogram(text):
-    hist = {}
+    dic = {}
     for char in text.lower():
-        if char.isalpha() and char not in hist:
-            hist[char] = hist.get(char, 0) + 1
-    else:
-        hist['others'] = hist.get('others', 0) + 1
-    return hist
-print(histogram('Ala ma kota!'))
-
-# tutaj others jest błędne !!
+        if char.isalpha() and char not in dic:
+            dic[char] = dic.get(char, 0) + 1
+        elif char.isalpha() and char in dic:
+            dic[char] = dic[char] + 1
+        elif char == ' ' and char not in dic:
+            dic['others'] = dic.get('others', 0) + 1
+        else:
+            dic['others'] = dic['others'] + 1
+    return dic
+print(histogram('Pablo Najlepzymsadsa..,..,....????? Naszym przyjAcielem jEst'))

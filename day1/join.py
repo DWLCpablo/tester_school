@@ -1,1 +1,1 @@
-print(','.join(['a', 'b', 'c']))
+print(', '.join(['a', 'b', 'c']))
