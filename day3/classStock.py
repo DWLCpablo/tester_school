@@ -35,7 +35,9 @@ class Stock:
             file_obj.write(product + ',' + str(count) + '\n')
 
 
-
+    def save2(self, file_obj):
+        lines = [prod + ',' + str(count) for prod, count in self.products.items()]
+        file_obj.writelines(lines)
 
     @staticmethod
     def load(file_obj):
@@ -60,3 +62,5 @@ print(Stock.foo)
 print(stock.foo)
 with open('magazyn.csv', 'wt') as data_file:
     stock.save(data_file)
+with open('magazyn2.csv', 'wt') as data_file:
+    stock.save2(data_file)
