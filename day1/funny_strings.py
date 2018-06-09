@@ -38,3 +38,5 @@ def randomize(text):
         else:
             chars.append(char.lower())
     return ''.join(chars)
+
+#zrób jeszcze numberize(text)
