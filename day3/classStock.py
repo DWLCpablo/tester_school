@@ -29,7 +29,20 @@ class Stock:
             if count > 0:
                 items[product] = count
         return items
-                # return self.products TWOJE
+
+    def save(self, file_obj):
+        for product, count in self.products.items():
+            file_obj.write(product + ',' + str(count) + '\n')
+
+
+
+
+    @staticmethod
+    def load(file_obj):
+        data = None
+        return Stock(data)
+
+
     @staticmethod
     def foo(a): # podająć staticmethod możemyh uruchamiać funkcję na instantcjach klasy, jak i samej klasie
         print('Static method called!', a)
@@ -45,3 +58,5 @@ print(stock.withdraw('lamp', 1))
 stock.foo('a')
 print(Stock.foo)
 print(stock.foo)
+with open('magazyn.csv', 'wt') as data_file:
+    stock.save(data_file)
