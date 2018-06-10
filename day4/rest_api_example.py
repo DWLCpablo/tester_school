@@ -23,3 +23,8 @@ print(requests.get(BASE_URL, params={'id': 'gOLqqi~'}).json())
 
 cebularze = requests.get(BASE_URL, params={'first_name': 'Michas', 'last_name': 'Cebularz'}).json()
 print(cebularze)
+
+response = requests.get(BASE_URL, params={'email_like': '@gmail.com'})  #
+print(response.json())
+print('192.168.1.1'.startswith('192.168'))
+print('abc'.starstwith('123'))

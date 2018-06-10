@@ -9,6 +9,8 @@ class PeopleClientError(Exception):  #ogólny błąd zapisania do API
 
 class PeopleClient:
 
+    # tutaj ewentualnie krotka
+
     def __init__(self, base_url, token):
         self.base_url = base_url
         self.token = token
@@ -39,18 +41,34 @@ class PeopleClient:
             raise PeopleClientError(response.json()['error'])
         return response.json()
 
-    def person_by_id(self, person_id): # to nawet działa
+    def person_by_id(self, person_id): # to nawet działa #DELETE bardzo podobny
         url = self.base_url + str(person_id)
         response = requests.get(url)
         if not response.ok:
             raise PeopleClientError(response.json()['error'])
         return response.json()
 
-    def query(self, **criteria): #DZIAŁAAAAAA
-        response = requests.get(self.base_url, params={**criteria})
-        if not response.ok:
-            raise PeopleClientError(response.json()['HABLAAAAA!!!'])
+    def query(self, **criteria): #DZIAŁAAAAAA !!! brawo pablo
+        krotka = ('first_name', 'last_name', 'phone', 'ip_address', 'email')  #można tę krotkę nawet wyrzucić na początkku, jako atrybut klasy
+        for key, value in criteria.items():
+            if key not in krotka:
+                raise ValueError('HABLAAAAA!!!')
+        response = requests.get(self.base_url, params=criteria)
         return response.json()
+
+
+
+    def people_by_partial_ip(self, partial_ip):
+        ip_regexp = '^' + partial_ip
+        response = requests.get(self.base_url, params={'ip_address_like': ip_regexp})
+        return response.json()
+
+
+    def people_by_partial_ip1(self, partial_ip):
+        response = requests.get(self.base_url, params={'ip_address_like': partial_ip})
+        response['ip_address'].startswith('192.168')
+        return response.json()
+
 
 if __name__ == '__main__':
     token = hashlib.md5('relayr'.encode('ascii')).hexdigest()
@@ -64,4 +82,6 @@ if __name__ == '__main__':
     #print(new_person) #działa!!!
     #find_person = client.person_by_id('wKbiVtQ')
     #print(find_person)
-    print(client.query(first_name='pablo', last_name='p'))
+    #print(client.query(first_name='pablo', last_name='p')) #działa, spróbuj zmienić nazwę klucza, to dostaniesz swojego errora! ;-)
+    print(client.people_by_partial_ip('192.168'))
+    #print(client.people_by_partial_ip1('192.168'))
