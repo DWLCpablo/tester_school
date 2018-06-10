@@ -26,6 +26,8 @@ class TabularData: # panie, to Ci nie idzie
         for row in self._rows:
             values.append(row[idx])
         return values
+
+
     def get_column_list_expressions(self, col_name):
         if col_name not in self.columns:
             raise KeyError('Unknown key name: ', col_name)
@@ -49,14 +51,35 @@ class TabularData: # panie, to Ci nie idzie
     def __str__(self):  # nadpisujesz str() dla klasy
         return str(self._rows)
 
+    def to_dict(self):
+        target = {}
+        target['columns'] = self.column_names
+        target['rows'] = self._rows
+        return json.dumps(target)
+
     def to_json(self):
         target = {}
         target['columns'] = self.column_names
         target['rows'] = self._rows
         return json.dumps(target)
 
+    def to_json1(self):
+        return json.dumps(self.to_dict)
+
     @staticmethod
     def from_json(json_data):
+        data = json.loads(json_data)
+        table = TabularData(data['columns'])
+        for row in data['rows']:
+            table.append(row)
+        return table
+
+    @staticmethod
+    def from_json1(self):
+        return TabularData.from_dict(json.loads(json_file))
+
+    @staticmethod
+    def from_dict():
         data = json.loads(json_data)
         table = TabularData(data['columns'])
         for row in data['rows']:
@@ -70,6 +93,9 @@ class TabularData: # panie, to Ci nie idzie
         target['rows'] = self._rows
         return json.dump(target, output_file) #dump!! a nie dumps!!!
 
+    def to_json_file(self, output_file):
+        return json.dump(self.to_dict(), output_file)
+
     @staticmethod
     def from_json_file(json_data):
         data = json.load(json_data)
@@ -77,6 +103,11 @@ class TabularData: # panie, to Ci nie idzie
         for row in data['rows']:
             table.append(row)
         return table
+
+    @staticmethod
+    def from_json_file1(json_file):
+        return TabularData.from_dict(json.load(json_file))
+
 
 my_tab = TabularData(['Name', 'Age', 'Shoe size'])
 my_tab.append(['pablo', 33, 45])
