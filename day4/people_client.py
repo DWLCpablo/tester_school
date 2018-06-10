@@ -22,7 +22,7 @@ class PeopleClient:
         people = response.json()
         for page in range(2, pages_count +1):
             chunk = requests.get(self.base_url, params={'_limit': limit, '_page': page}).json()
-            people.extend(chunk)
+            people.extend(chunk) # sprawdź .extend()
         return people
 
 if __name__ == '__main__':
