@@ -1,4 +1,4 @@
-#funkcja przymująca argument = limit, zawracająca listę
+#funkcja przymująca argument = limit, zawracająca listę z danymi jsona z API http://polakow.eu:3000/people/, modyfikowane przez podawany argument limit (okresla ile na stronie ma być obiektów)
 # OMGOMGOMGOMGOMG
 
 import requests
