@@ -1,5 +1,5 @@
 from copy import deepcopy
-
+import json
 
 class TabularData: # panie, to Ci nie idzie
     def __init__(self, column_names):
@@ -49,6 +49,35 @@ class TabularData: # panie, to Ci nie idzie
     def __str__(self):  # nadpisujesz str() dla klasy
         return str(self._rows)
 
+    def to_json(self):
+        target = {}
+        target['columns'] = self.column_names
+        target['rows'] = self._rows
+        return json.dumps(target)
+
+    @staticmethod
+    def from_json(json_data):
+        data = json.loads(json_data)
+        table = TabularData(data['columns'])
+        for row in data['rows']:
+            table.append(row)
+        return table
+
+
+    def to_json_file(self, output_file):
+        target = {}
+        target['columns'] = self.column_names
+        target['rows'] = self._rows
+        return json.dump(target, output_file) #dump!! a nie dumps!!!
+
+    @staticmethod
+    def from_json_file(json_data):
+        data = json.load(json_data)
+        table = TabularData(data['columns'])
+        for row in data['rows']:
+            table.append(row)
+        return table
+
 my_tab = TabularData(['Name', 'Age', 'Shoe size'])
 my_tab.append(['pablo', 33, 45])
 print(my_tab.column_names)
@@ -59,5 +88,14 @@ print(my_tab._rows)
 print(my_tab.get_row(2))
 print(my_tab.rows_count())
 print(my_tab.get_column('Age'))
+json_data = my_tab.to_json()
+print(my_tab.to_json())
+print(my_tab.from_json(json_data))
+table2 = TabularData.from_json(json_data)
 
 
+with open('tabular_data.json', 'wt') as json_file:
+    my_tab.to_json_file(json_file)
+
+with open('tabular_data.json', 'rt') as json_file:
+    my_tab.from_json_file(json_file)

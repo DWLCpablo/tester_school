@@ -1,3 +1,4 @@
+import json
 import copy
 
 class Stock:
@@ -49,6 +50,21 @@ class Stock:
     def foo(a): # podająć staticmethod możemyh uruchamiać funkcję na instantcjach klasy, jak i samej klasie
         print('Static method called!', a)
 
+# JSONy
+    def to_json(self):
+        return json.dumps(self.products)
+
+    @staticmethod
+    def from_json(json_str):  # ??OMG
+        products = json.loads(json_str)
+        return Stock(products)
+
+    def to_json_file(self, output_file):
+        json.dump(self.products, output_file)
+
+    @staticmethod
+    def from_json_file(json_file):
+        return Stock(json.load(json_file))
 
 products = {'chair': 2, 'table': 3, 'lamp': 3}
 stock = Stock({'chair': 2, 'table': 3, 'lamp': 3})
@@ -64,3 +80,17 @@ with open('magazyn.csv', 'wt') as data_file:
     stock.save(data_file)
 with open('magazyn2.csv', 'wt') as data_file:
     stock.save2(data_file)
+print(stock.to_json())
+stock_json = stock.to_json()
+stock2 = Stock.from_json(stock_json)
+print(stock2.available_items() == stock.available_items())
+print(stock2.products == stock.products)
+
+
+with open('stock.json', 'wt') as stock_json:
+    stock.to_json_file(stock_json)
+
+with open('stock.json', 'rt') as stock_json:
+    stock4 = Stock.from_json_file(stock_json)
+
+print(stock4.products)  #poważna analiza Cię tu czeka, całego pliku
