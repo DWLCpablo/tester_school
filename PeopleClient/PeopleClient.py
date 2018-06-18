@@ -83,23 +83,14 @@ class PeopleClient:
         return str(len(persons)) + ' entries deleted.'
 
     def add_from_file(self, my_file):
-        with open(my_file, 'rt') as json_file :
-            data = json.load(json_file)
-        headers = {'Authorization': 'Bearer ' + self.token}
-        response = requests.post(self.base_url, json=data, headers=headers)
-        if response.status_code == 201:
-            return 'Post succesfull!'
-        return 'Post failed.'
-
-    def add_from_file1(self, my_file):
         with open(my_file, 'rt') as json_file:
             data = json.load(json_file)
         headers = {'Authorization': 'Bearer ' + self.token}
         for item in data:
             response = requests.post(self.base_url, json=item, headers=headers)
-            if response.status_code == 201:
-                return 'Post succesfull!'
-            return 'Post failed.'
+            if response.status_code != 201:
+                raise PeopleClientError('Post failed.')
+        return ('Post succesful1. ' + str(len(data)) + ' entries added.')
 
 
 if __name__ == '__main__':
@@ -110,7 +101,7 @@ if __name__ == '__main__':
     #people3 = print(client.get_all())
     #print(people == people2)
     #person_post = print(client.add_person('pablo', 'pablo', 'cos@cos.com', '695695695', '192.192.192.192'))
-    #new_person = client.add_person('pablo', 'pablo', 'coscos.com', '695695695', '192.192.192.192') #działa!!
+    #new_person = client.add_person('pablo', 'pablo', 'coscos@com.cos', '695695695', '192.192.192.192') #działa!!
     #print(new_person) #działa!!!
     #find_person = client.person_by_id('wKbiVtQ')
     #print(find_person)
@@ -119,6 +110,5 @@ if __name__ == '__main__':
     #print(client.people_by_partial_ip1('192.168'))
     #print(client.delete_by_id('~lAyCOc'))
     #print(client.delete_by_name('pablo'))
-
-    print(client.add_from_file('jose.json'))
+    #print(client.add_from_file('jose.json'))
 
