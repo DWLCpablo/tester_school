@@ -3,6 +3,7 @@ import hashlib
 import requests
 import json
 
+
 class PeopleClientError(Exception):  #ogólny błąd zapisania do API
     pass
 
@@ -109,6 +110,6 @@ if __name__ == '__main__':
     #print(client.people_by_partial_ip('192.168'))
     #print(client.people_by_partial_ip1('192.168'))
     #print(client.delete_by_id('~lAyCOc'))
-    #print(client.delete_by_name('pablo'))
-    #print(client.add_from_file('jose.json'))
+    #print(client.delete_by_name('Miwiana'))
+    print(client.add_from_file('jose1.json'))
 

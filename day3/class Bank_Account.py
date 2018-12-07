@@ -19,9 +19,9 @@ class BankAccount:
             raise ValueError('Wpłacana kwota musi być większa od 0.')
         return self.balance + amount
 
-my_account = BankAccount(10)
+my_account = BankAccount(100)
 print(my_account.balance)
 print(my_account.deposit(20))
-print(my_account.withdraw(50))
+print(my_account.withdraw(30))
 my_second_account = BankAccount(10)
 print(my_second_account.balance)

@@ -1,5 +1,5 @@
-from copy import deepcopy
 import json
+import copy
 
 class TabularData: # panie, to Ci nie idzie
     def __init__(self, column_names):
@@ -8,7 +8,7 @@ class TabularData: # panie, to Ci nie idzie
         for idx, name in enumerate(column_names):
             self.columns[name] = idx
          # to samo w poprzednich 3 liniach:
-        self.columns[name] = {name: idx for idx, name in enumerate(column_names)}
+        #self.columns[name] = {name: idx for idx, name in enumerate(column_names)}
         if len(column_names) > len(self.columns):
             raise ValueError('Column names have to be unique.')
         self._rows = []  # _rows()  znaczy, że pole _ jest 'prywatne', by nie eksponować atrybutu dla użytkownika, nie może ich ruszać, modyfikować etc
@@ -93,7 +93,7 @@ class TabularData: # panie, to Ci nie idzie
         target['rows'] = self._rows
         return json.dump(target, output_file) #dump!! a nie dumps!!!
 
-    def to_json_file(self, output_file):
+    def to_json_file1(self, output_file):
         return json.dump(self.to_dict(), output_file)
 
     @staticmethod
@@ -106,7 +106,7 @@ class TabularData: # panie, to Ci nie idzie
 
     @staticmethod
     def from_json_file1(json_file):
-        return TabularData.from_dict(json.load(json_file))
+        return TabularData.from_dict(json.loads(json_file))
 
 
 my_tab = TabularData(['Name', 'Age', 'Shoe size'])
@@ -118,11 +118,11 @@ my_tab.append(['Ciszewski', 30, 42])
 print(my_tab._rows)
 print(my_tab.get_row(2))
 print(my_tab.rows_count())
-print(my_tab.get_column('Age'))
+#print(my_tab.get_column('Age'))
 json_data = my_tab.to_json()
-print(my_tab.to_json())
-print(my_tab.from_json(json_data))
-table2 = TabularData.from_json(json_data)
+#print(my_tab.to_json())
+#print(my_tab.from_json(json_data))
+#table2 = TabularData.from_json(json_data)
 
 
 with open('tabular_data.json', 'wt') as json_file:

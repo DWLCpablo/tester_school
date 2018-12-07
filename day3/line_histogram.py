@@ -17,7 +17,7 @@ def line_histogram2(input_file):
 
 if __name__ == '__main__':
     try:
-        print(line_hist('plik.txt'))
+        print(line_hist('multiple.txt'))
     except OSError as err:
         print(err)
 

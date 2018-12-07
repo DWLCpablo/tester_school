@@ -71,20 +71,20 @@ stock = Stock({'chair': 2, 'table': 3, 'lamp': 3})
 print(stock.products)
 print(stock.resupply('bed', 5))
 print(stock.available_items())
-print(stock.withdraw('lamp', 1))
+print(stock.withdraw('post', 1))
 #Stock.foo('a')
-stock.foo('a')
-print(Stock.foo)
-print(stock.foo)
-with open('magazyn.csv', 'wt') as data_file:
-    stock.save(data_file)
-with open('magazyn2.csv', 'wt') as data_file:
-    stock.save2(data_file)
-print(stock.to_json())
-stock_json = stock.to_json()
-stock2 = Stock.from_json(stock_json)
-print(stock2.available_items() == stock.available_items())
-print(stock2.products == stock.products)
+#stock.foo('a')
+#print(Stock.foo)
+#print(stock.foo)
+#with open('magazyn.csv', 'wt') as data_file:
+#    stock.save(data_file)
+#with open('magazyn2.csv', 'wt') as data_file:
+#    stock.save2(data_file)
+#print(stock.to_json())
+#stock_json = stock.to_json()
+#stock2 = Stock.from_json(stock_json)
+#print(stock2.available_items() == stock.available_items())
+#print(stock2.products == stock.products)
 
 
 with open('stock.json', 'wt') as stock_json:

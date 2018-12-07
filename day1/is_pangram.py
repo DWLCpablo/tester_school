@@ -1,20 +1,28 @@
+import json
 import string
 
+def pangram(text):
+    target = {}
+    for char in text.lower():
+        if char.isalpha():
+            target[char] = 0
+    if len(target) == len(string.ascii_lowercase):
+        return ('Is pangram')
+    return False
+print(pangram('The quick brown fox jumps over the lazy dog'))
 
-def is_pangram(text):
-    text = text.lower()
-    for letter in string.ascii_lowercase:
-        if letter not in text:
-            return False
-    return True
 
-print(is_pangram('jghjhklghbouy23232ghjkSSSSghj'))
-pang = 'The quick brown fox jumps over the lazy dog'
-not_pang = 'Oko'
-print(is_pangram(pang))
-print(is_pangram(not_pang))
+def pangram1(text):
+    dic = {}
+    for char in text.lower():
+        if char.isalpha():
+            dic[char] = 0
+    if len(dic) == len(string.ascii_lowercase):
+        return (text + ' is a pangram.')
+    else:
+        return (text + ' is not a pangram.')
 
-#ze słownikiem (trudne)
+print(string.ascii_lowercase)
 def is_pangram2(text):
     found_letters = {}
     for char in text.lower():
@@ -23,5 +31,9 @@ def is_pangram2(text):
     if len(found_letters) == len(string.ascii_lowercase):
         return True
     return False
-print(is_pangram2(pang))
-print(is_pangram2(not_pang))
+
+print(pangram1('The quick brown fox jumps over the lazy dog'))
+print(is_pangram2('The quick brown fox jumps over the lazy dog'))
+text = 'The quick brown fox jumps over the lazy dog'
+print(json.dumps(text))
+print(json.loads(json.dumps(text)))

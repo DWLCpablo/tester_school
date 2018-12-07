@@ -31,6 +31,7 @@ with open('plik.txt') as my_file: #wszystkie linie ze znakami \n
     lines = my_file.readlines()
     print(lines)
 
+
 with open('plik.txt') as my_file: # wszystkie linie z dodatkowym 'enterem' = nową linią
     for line in my_file:
         print(line)
